@@ -1,10 +1,9 @@
-<div id="<%= dom_id post %>">
-  <p>    
+<div id="<%= dom_id post %>">  
     <h5><%= post.title %></h5>
-  </p>
+    <%= pluralize(post.views, "view") %>
 
-  <p>   
+  <div>
     <%= post.body %>
-  </p>
+  </div>
 
 </div>
