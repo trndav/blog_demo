@@ -1,3 +1,4 @@
+<div class="container">
 <p style="color: green"><%= notice %></p>
 
 <%= render @post %>
@@ -7,4 +8,5 @@
   <%= link_to "Back to posts", posts_path %>
 
   <%= button_to "Destroy this post", @post, method: :delete, data: {turbo_confirm: "Are you sure?" } %>
+</div>
 </div>
