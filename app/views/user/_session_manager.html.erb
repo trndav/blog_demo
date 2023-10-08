@@ -1,0 +1,20 @@
+<% if current_user %>
+    <% # Logged in block %>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            User
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><%= link_to "New post", new_post_path, class:"dropdown-item" %></li>
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= button_to "Logout", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+        </ul>
+    </li>
+<% else %>
+    <% # Not logged in block %>    
+    <li class="nav-item dropdown">
+        <li><%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %></li>
+        <li><%= link_to "Log In", new_user_session_path, class:"nav-link" %></li>
+    </li>
+<% end %>
