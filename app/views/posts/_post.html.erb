@@ -1,4 +1,5 @@
 <div id="<%= dom_id post %>">  
+    Post made by: <%= post.user.email %>
     <h5><%= post.title %></h5>
     <%= pluralize(post.views, "view") %>
 
