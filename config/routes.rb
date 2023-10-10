@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   }
 
   get "/u/:id", to: "users#profile", as: "user"
-  resources :posts
+  
+  resources :posts do
+    # /posts/1/comments/4
+    resources :comments
+  end
+  
   get "about", to: "pages#about"  
 
   root "pages#home"
