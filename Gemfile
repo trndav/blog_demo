@@ -71,3 +71,5 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "noticed", "~> 1.6"
