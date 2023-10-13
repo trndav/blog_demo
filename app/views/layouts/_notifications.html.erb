@@ -7,11 +7,16 @@
             </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+            <% if @unread.present? %>
+                <div class="container">
+                    New notifications
+                </div>
+            <% end %>
             <% @unread.each do |notification| %>
                 <li class="dropdown-item">
                     <%= link_to notification.to_notification.message, notification.to_notification.url %>
                 </li>
-            <% end %>
+            <% end %>            
             <% if @read.count > 0 && @unread.count > 0 %>
                 <li>
                     <hr class="dropdown-divider">
@@ -20,8 +25,11 @@
                 <li class="dropdown-item">
                 No notifications.
                 </li>
-            <% end %>
-            <% @read.each do |notification| %>
+            <% end %>          
+            <div class="container">
+                Old notifications
+            </div>            
+            <% @read.each do |notification| %>                
                 <li class="dropdown-item">
                     <%= link_to notification.to_notification.message, notification.to_notification.url %>
                 </li>
