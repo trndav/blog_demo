@@ -1,4 +1,5 @@
-<%= search_form_for @query do |f| %>
-    <%= f.search_field :title_or_body_cont, placeholder: "Search..." %>
+<%= search_form_for(@query, url: search_path, method: :get, class:'d-flex', except: [:type]) do |f| %>
+    <% # Search for title or body or user email or user name any of values with case insensitive  %>
+    <%= f.search_field :title_or_body_or_user_email_or_user_name_i_cont_any, placeholder: "Search...", class: "form-control me-2" %>
     <%= f.submit "Search" %>
 <% end %>
