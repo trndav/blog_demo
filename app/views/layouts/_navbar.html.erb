@@ -20,6 +20,13 @@
         <li class="nav-item">
           <%= link_to "Search NW", search_path, class:"nav-link" %>
         </li>    
+
+        <% if current_user %>
+          <li class="nav-item">
+            <%= link_to "Admin", admin_path, class:"nav-link" if current_user.admin? %>
+          </li>    
+        <% end %>
+
       </ul>
       <ul class="navbar-nav">
         <%= render "layouts/notifications" %>

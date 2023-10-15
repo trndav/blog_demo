@@ -1,0 +1,6 @@
+<div class="container">
+    <p>
+        <%= link_to "Admin", admin_path %>
+        <% # Action is method name from admin_controller. Do this if not in index %>
+        <%= " > #{params[:action]}.capitalize" unless params[:action].eql?("index") %>
+</div>

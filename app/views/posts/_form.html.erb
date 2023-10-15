@@ -18,9 +18,8 @@
   <br>
   <div>
     <%= form.label :body, style: "display: block" %>
-    <%= form.text_field :body %>
+    <%= form.rich_text_area :body %>
   </div>
-
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div>
