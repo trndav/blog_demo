@@ -5,7 +5,7 @@ class Post < ApplicationRecord
     has_many :comments, dependent: :destroy
     has_noticed_notifications model_name: "Notification"
     # post have many notifications through :user model
-    has_many :notifications, through: :user, dependent: :destroy
+    has_many :notifications, through: :user
 
     has_rich_text :body
     # This is for ransack search (?)

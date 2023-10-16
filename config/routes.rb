@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     get 'admin/posts'
     get 'admin/comments'
     get 'admin/users'
-    get 'admin/show_post'
+    # Assigning name to route
+    get 'admin/show_post/:id', to: "admin#show_post", as: "admin_post"
   end
 
   get 'search', to: "search#index"
