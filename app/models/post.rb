@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+    extend FriendlyId
     validates :title, presence: true, length: {minimum: 3, maxmum: 50}
     validates :body, presence: true, length: {minimum: 3, maxmum: 300}
     belongs_to :user
@@ -10,6 +11,13 @@ class Post < ApplicationRecord
     has_rich_text :body
     # This is for ransack search (?)
     has_one :content, class_name: "ActionText::RichText", as: :record, dependent: :destroy
+
+    friendly_id :title, use: %i[slugged history finders]
+
+    # method is part of the FriendlyId; determine whether a new friendly ID should be generated
+    def should_generate_new_friendly_id?
+        title_changed? || slug.blank?
+    end
 
     def self.ransackable_attributes(auth_object = nil)
         ["title_or_body_or_user_email_or_user_name_cont"]  # Add the attributes you want to make searchable
