@@ -9,8 +9,9 @@ class ApplicationController < ActionController::Base
     private
     def set_notifications
         # .newest_first is same like .where().order(created_at: :desc)
+        # .includes(:recipient) is ActiveRecord method used to optimize database queries
         notifications = Notification.where(recipient: current_user).newest_first.limit(9)
-        @unread = Notification.unread
-        @read = Notification.read
+        @unread = Notification.includes([:recipient]).unread
+        @read = Notification.includes([:recipient]).read
     end
 end

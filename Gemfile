@@ -76,3 +76,5 @@ end
 gem "noticed", "~> 1.6"
 
 gem "ransack", "~> 4.0"
+
+gem "bullet", "~> 7.1"

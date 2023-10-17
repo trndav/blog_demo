@@ -2,8 +2,9 @@ class AdminController < ApplicationController
   def index
   end
   def posts
-    # When posts get pulled, it will get users and comments also
-    @posts = Post.all.includes(:user, :comments)
+    # When posts get pulled, it will get users and comments also, DB N+1 problem.
+    # @posts = Post.all.includes(:user, :comments)
+    @posts = Post.all.includes(:user)
   end
   def comments
   end
