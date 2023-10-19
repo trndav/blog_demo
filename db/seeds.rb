@@ -1,8 +1,10 @@
 # Seed for benchmark db usage
 # IRB:  rails db:drop (or delete db other way)
 # IRB: rails db:setup
+# Comments are not created bc of:
+# Active record - import problem: Recursive calls only world with postgres.
 
-# arrays to bulk push later
+# arays to bulk push later
 posts = []
 comments = []
 # measure the elapsed time it takes to execute a block of code
