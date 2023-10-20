@@ -9,8 +9,9 @@ class Comment < ApplicationRecord
 
   private
   def notify_recipient
+    return if post.user == user
     # CommentNotification class from app\notifications\comment_notification.rb
-    CommentNotification.with(comment: self, post: post).deliver_later(post.user)
+    CommentNotification.with(comment: self, post: post).deliver_later(post.user)    
   end
   def cleanup_notifications
     notifications_as_comment.destroy_all

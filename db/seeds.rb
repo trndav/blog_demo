@@ -9,20 +9,20 @@
                 password: "123456", password_confirmation: "123456", role: User.roles[:admin])
         User.create(email: "bob@email.com", name: "Bob", 
                 password: "123456", password_confirmation: "123456")
-
-# comments = []
+                
 # measure the elapsed time it takes to execute a block of code
 elapsed = Benchmark.measure do  
         # aray to bulk push later      
         posts = []
+        Jane = User.first
+        Bob = User.second
         100.times do |x|
                 puts "Creating post #{x}"
-                post = Post.new(title: "Title #{x}", body: "Body #{x} Words go here Idk", user: User.first)
+                post = Post.new(title: "Title #{x}", body: "Body #{x} Words go here Idk", user: Jane)
                 # add element to array                                                      
                         2.times do |y|
                         puts "Creating comment #{y} for post #{x}"
-                        post.comments.build(body: "Comment #{y}", user: User.second)
-                        # comments.push(comment)
+                        post.comments.build(body: "Comment #{y}", user: Bob)
                 end
                 # add element to array
                 posts.push(post)  
@@ -30,5 +30,4 @@ elapsed = Benchmark.measure do
         # bulk push all arrays after all is finished
         Post.import(posts, recursive: true)
 end
-# Comment.import(comments)
 puts "Elapsed in #{elapsed.real} seconds."
