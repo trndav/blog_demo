@@ -1,5 +1,5 @@
 <div id="<%= dom_id post %>">  
-    Post made by: <%= link_to post.user.name, user_path(post.user) %>    
+    Post made by: <%= link_to "#{post.user.first_name} #{post.user.last_name}", user_path(post.user) %>    
     <h5><%= post.title %></h5>
   <div>
     <%= post.body %>

@@ -1,6 +1,6 @@
 <div class="comment-<%= comment.id %> container" 
     style="border: 1px solid black; padding: 1em; margin: 1em;">
-    <%= comment.user.name %><br />
+    <%= "#{comment.user.first_name} #{comment.user.last_name}" %><br />
 
     <% # If comment is updated then show Updated instead of Posted %>
     <% if (comment.updated_at - comment.created_at) > 1 %>

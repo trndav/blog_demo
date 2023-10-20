@@ -1,4 +1,4 @@
 <div class="container">
-    <h4><%= @user.name %></h4>
+    <h4><%= "#{@user.first_name} #{@user.last_name}" %></h4>
     <p><%= pluralize(@user.views, "view") %></p>
 </div>
