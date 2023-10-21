@@ -10,11 +10,6 @@
     </div>
 
     <div class="field" style="margin-bottom: 10px">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autocomplete: "name" %>
-    </div>
-
-    <div class="field" style="margin-bottom: 10px">
       <%= f.label :password %>
       <% if @minimum_password_length %>
       <em>(<%= @minimum_password_length %> characters minimum)</em>

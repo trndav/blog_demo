@@ -33,7 +33,7 @@ development:
   # database: psql_demo9
   # pool: 5
   # username: postgres
-  # password: 4456
+  # password: xxxx
   # host: localhost
   # schema_search_path: public
   # database_owner: postgres

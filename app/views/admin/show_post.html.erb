@@ -21,7 +21,7 @@
     <div class="row">
         <p>
             <strong>Author:</strong> 
-            <%= "#{@post.user.name} | #{@post.user.email} | #{pluralize(@post.user.views, "User view")}" %>
+            <%= "#{@post.user.full_name} | #{@post.user.email} | #{pluralize(@post.user.views, "User view")}" %>
         </p>
     </div>
     <div class="row">       
@@ -33,7 +33,7 @@
         </p> 
         <p>
         <% @post.comments.each do |comment| %>
-            <p style="margin-top: 10px;"><strong>Comment creator: </strong><%= comment.user.name %>
+            <p style="margin-top: 10px;"><strong>Comment creator: </strong><%= comment.user.full_name %>
             <%= comment.body %></p>
         <% end %>     
        </p>
