@@ -9,16 +9,13 @@ class User < ApplicationRecord
 
   has_one :address, dependent: :destroy, inverse_of: :user, autosave: true
 
-  # Class level accessor https://apidock.com/rails/Class/cattr_accessor
-  cattr_accessor :form_steps do
-    %w[sign_up set_name set_address find_users]
-  end
+  cattr_accessor :form_steps
+  @@form_steps = %w[sign_up set_name set_address find_users]
 
-  # Instance level accessor https://apidock.com/rails/Module
   attr_accessor :form_step
 
   def form_step
-    @form_step ||= "sign up"
+    @form_step ||= "sign_up"
   end
 
   with_options if: -> { required_for_step?("set_name") } do |step|
@@ -26,36 +23,39 @@ class User < ApplicationRecord
     step.validates :last_name, presence: true
   end
 
-  accepts_nested_attributes_for :address, allow_destroy: true
-
-  validates_associated :address, if -> { required_for_step?("set_address")}
-  def required_for_step?(step)
-    # All fields are required if no form step is present
-    return true if form_step_nil?
-
-    # All fields from previous steps are required 
-    # if step parameter appears before or we are on current step
-    return true if form_steps.index(step.to_s) <= form_steps.index(form_step.to_s)
-  end
-
-
-
-  # User can be admin or user
-  enum role: [:user, :admin]
-  # If new record, set_default_role
-  after_initialize :set_default_role, if: :new_record?
+  validates_associated :address, if: -> { required_for_step?("set_address") }
 
   def full_name
-    "#{first_name.capitalize} #{last_name.capitalize}"
+   # "#{first_name.capitalize} #{last_name.capitalize}"
+    first = first_name&.capitalize unless first_name.nil?
+    last = last_name&.capitalize unless first_name.nil?
+    if first && last
+      "#{first} #{last}"
+    elsif first
+      first
+    elsif last
+      last
+    else
+      "No Name"
+    end
   end
 
+  accepts_nested_attributes_for :address, allow_destroy: true
+
+  def required_for_step?(step)
+    return true if form_step.nil?
+    form_steps.index(step.to_s) <= form_steps.index(form_step.to_s)
+  end
+
+  enum role: [:user, :admin]
+  after_initialize :set_default_role, if: :new_record?
+
   def self.ransackable_attributes(auth_object = nil)
-    ["email", "name"]  # Add the attributes you want to make searchable
+    ["email", "full_name"]  # Add the attributes you want to make searchable
   end
 
   private
   def set_default_role
-    # assign variable that is nil or false (used for initializing a variable if it hasn't been set yet)
     self.role ||= :user
   end
 end

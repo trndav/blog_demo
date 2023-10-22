@@ -10,13 +10,15 @@ Rails.application.routes.draw do
   end
 
   get 'search', to: "search#index"
-  get 'users/profile'
+  # get 'users/profile'
     devise_for :users, controllers: {
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
-
   get "/u/:id", to: "users#profile", as: "user"
+
+  # Sends to after_signup controller
+  resources :after_signup
   
   resources :posts do
     # /posts/1/comments/4
