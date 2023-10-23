@@ -3,6 +3,7 @@ class Post < ApplicationRecord
     validates :title, presence: true, length: {minimum: 3, maxmum: 50}
     validates :body, presence: true, length: {minimum: 3, maxmum: 300}
     belongs_to :user
+    belongs_to :category
     has_many :comments, dependent: :destroy
     has_noticed_notifications model_name: "Notification"
     # post have many notifications through :user model
@@ -13,6 +14,8 @@ class Post < ApplicationRecord
     has_one :content, class_name: "ActionText::RichText", as: :record, dependent: :destroy
 
     friendly_id :title, use: %i[slugged history finders]
+
+    ransack_alias :searchable, :title_or_body_or_user_email_or_user_first_name_or_user_last_name
 
     # method is part of the FriendlyId; determine whether a new friendly ID should be generated
     def should_generate_new_friendly_id?
