@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
+  # If not admin then can access only category show and index. is_admin! > application controller
+  before_action :is_admin!, except: %i[ show index ]
 
   # GET /categories or /categories.json
   def index

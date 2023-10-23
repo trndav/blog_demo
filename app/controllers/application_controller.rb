@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
         @nav_categories = Category.where(display_in_nav: true)
     end
 
+    def is_admin!
+         redirect_to root_path, alert: "You are not authorized to do that." unless current_user&.admin?
+    end
+
     private
     def set_notifications
         # .newest_first is same like .where().order(created_at: :desc)

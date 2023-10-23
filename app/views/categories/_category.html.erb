@@ -1,7 +1,19 @@
 <div id="<%= dom_id category %>">
   <p>
-    <strong>Name:</strong>
-    <%= category.name %>
+  <%= "Category count: " %><%= Category.count %><br>
+    <strong>Category name:</strong>    
+    <% # Switch from cat_path to cat. If on show page, it target is cat_path, if not then cat %>
+    <% target = action_name.eql?("show") ? categories_path : category %>
+    <%= link_to category.name.capitalize, target %>
   </p>
-
+  <% category.posts.includes(:user, :rich_text_body).each do |post| %>
+    <%= render "posts/post", post: post %>
+  <% end %>
 </div>
+<% 10.times do %>
+  <% random_number = rand(1..1000) %>
+  <% characters = ('A'..'Z').to_a %>
+  <% random_character = characters.sample %>
+  <%= random_number %><%= random_character %>
+<% end %>
+<br><%= "Find me at _category.html.erb" %>
