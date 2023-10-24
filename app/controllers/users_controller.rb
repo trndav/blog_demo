@@ -7,6 +7,14 @@ class UsersController < ApplicationController
     else
       @user.update(views: @user.views + 1)
     end
+
+    @total_posts = @user.posts.count
+    @posts = @user.posts.includes(:rich_text_body).order(created_at: :desc)
+
+    @total_views = 0
+    @posts.each do |post|
+      @total_views += post.views
+    end
   end
 
   private

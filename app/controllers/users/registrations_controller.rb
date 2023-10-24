@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
+
   # GET /resource/sign_up
   # def new
   #   super
@@ -23,8 +24,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     current_user.build_address(address_params) unless current_user.address
     current_user.address.update(address_params)
+    respond_to do |format|
+      if current_user.update(user_params)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(current_user, partial: "users/profile", locals: { user: current_user }) }
+      else
+        format.html { render :edit }
+      end
+    end
   end
-
+    
+  def user_params
+    params.require(:user).permit(:email, :avatar, :first_name, :last_name, :password, :password_confirmation)
+  end
+  
   # DELETE /resource
   # def destroy
   #   super
@@ -49,6 +61,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:email,
+    :avatar,
     :first_name,
     :last_name,
     :password,

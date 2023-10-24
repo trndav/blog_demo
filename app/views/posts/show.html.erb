@@ -12,11 +12,15 @@
 </div>
 
 <div class="container">
+  <br>
+  <h4>Comment</h4>
   <% if current_user %>    
       <%= render "/comments/form", post: @post, comment: @post.comments.build, submit_label: "Reply" %>
     <% else %>
       <h5 style="margin-top: 10px;">You must be logged in to comment. <%= link_to "Log In", new_user_session_path %></h5>
   <% end %>
+  <br>
+  <h4>Comments:</h4>
   <% @comments.each do |comment| %>    
     <%= render "/comments/comment", post: @post, comment: comment %>
   <% end %>
