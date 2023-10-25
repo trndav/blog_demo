@@ -10,6 +10,12 @@ Rails.application.routes.draw do
     get 'admin/show_post/:id', to: "admin#show_post", as: "admin_post"
   end
 
+  # After purchase page - checkout
+  get "checkout", to: "checkouts#show"
+  get "checkout/success", to: "checkouts#success"
+  get "billing", to: "billing#show"
+
+
   get 'search', to: "search#index"
   # get 'users/profile'
     devise_for :users, controllers: {

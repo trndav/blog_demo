@@ -81,3 +81,6 @@ gem "activerecord-import", "~> 1.5"
 gem "pg", "~> 1.1"
 
 gem "wicked", "~> 2.0"
+
+gem "stripe", "~> 9.0"
+gem "pay", "~> 6.8"

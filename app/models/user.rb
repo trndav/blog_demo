@@ -7,8 +7,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, as: :recipient, dependent: :destroy
   has_one_attached :avatar
-
   has_one :address, dependent: :destroy, inverse_of: :user, autosave: true
+
+  pay_customer stripe_attributes: :stripe_attributes
 
   cattr_accessor :form_steps
   @@form_steps = %w[sign_up set_name set_address find_users]
@@ -53,6 +54,19 @@ class User < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     ["email", "full_name"]  # Add the attributes you want to make searchable
+  end
+
+  def stripe_attributes(pay_customer)
+    {
+      address: {
+        city: pay_customer.owner.city,
+        country: pay_customer.owner.country
+      },
+      metadata: {
+        pay_customer_id: pay_customer.id,
+        user_id: id # or pay_customer.owner_id
+      }
+    }
   end
 
   private

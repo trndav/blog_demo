@@ -1,0 +1,6 @@
+<h3>Checkout!</h3>
+
+<%= render partial: "pay/stripe/checkout_button", locals: {
+    session: @checkout_session,
+    title: "Checkout"
+} %>
