@@ -1,4 +1,6 @@
 <div class="container">
     <h1>Homepage</h1>
     <p>Find me in app/views/pages/home.html.erb</p>
+    <%= link_to "Buy Premium Bro™ Avatar!", checkout_path, class:"btn btn-success" %>
+    <%= link_to "Manage Billing", @portal_session.url, class:"btn btn-primary" %>
 </div>

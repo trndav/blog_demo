@@ -1,6 +1,8 @@
-<h3>Checkout!</h3>
-
-<%= render partial: "pay/stripe/checkout_button", locals: {
-    session: @checkout_session,
-    title: "Checkout"
-} %>
+<div class="container">
+    <h1>Checkout!</h1>
+    <p>Find me in app\views\checkouts\show.html.erb</p>
+    <%= render partial: "pay/stripe/checkout_button", locals: {
+        session: @checkout_session,
+        title: "Take my money now!"
+    } %>
+</div>

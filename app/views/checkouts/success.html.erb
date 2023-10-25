@@ -1,1 +1,11 @@
-<h3>Success purchase!</h3>
+<div class="container">
+    <h3>Successful purchase!</h3>   
+    <p>You are now proud owner of</p>
+    <% @line_items.each do |item| %>
+        <p><strong><%= item.description %></strong> purchased for only:
+        $<%= item.price.unit_amount.to_f / 100 %></p>
+        <% product = Stripe::Product.retrieve(item.price.product) %>
+        <%= image_tag(product.images.first) %>
+    <% end %>
+    <h5>Total purchase amount was <%= @session.amount_total.to_f / 100 %></h5>
+</div>
