@@ -11,8 +11,8 @@ module SubscriptionConcern
                 subscription_start_date: Time.at(subscription.current_period_start))
         end
         def active_subscription
-            check_subscription_status if subscription_end_date.nil? || subscription_end_date < Time.now
-            subscription_end_date.nil? ? false: subscription_end_date > Time.now
+            check_subscription_status if subscription_end_date.nil? || subscription_end_date < 1.months.from_now
+            subscription_end_date.nil? ? false: subscription_end_date > 1.months.from_now
         end
     end
 end   

@@ -5,7 +5,7 @@ class MembersController < ApplicationController
   def dashboard
   end
 
-  def active_subscription
+  def check_subscription_status
     unless current_user.active_subscription
       redirect_to checkout_path(
         line_items: ["price_1O5QHLEQZj9AchNLjUsGDy5C"],
