@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'members/dashboard'
   resources :categories
   # if user is admin then:
   authenticated :user, ->(user) { user.admin? } do

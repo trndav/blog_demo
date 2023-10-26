@@ -1,6 +1,9 @@
 class PagesController < ApplicationController
+ 
   def home
-    @portal_session = current_user.payment_processor.billing_portal
+    if current_user
+      @portal_session = current_user.payment_processor.billing_portal    
+    end
   end
 
   def about

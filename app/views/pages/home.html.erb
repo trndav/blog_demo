@@ -1,6 +1,17 @@
 <div class="container">
     <h1>Homepage</h1>
     <p>Find me in app/views/pages/home.html.erb</p>
-    <%= link_to "Buy Premium Bro™ Avatar!", checkout_path, class:"btn btn-success" %>
-    <%= link_to "Manage Billing", @portal_session.url, class:"btn btn-primary" %>
+    <%#= link_to "Buy Premium Bro™ Avatar!", checkout_path, class:"btn btn-success" %>
+
+    <%= link_to "Buy Premium Bro™ Avatar!", checkout_path(
+        line_items: ["price_1O53FdEQZj9AchNLtjb2M2Ku"],
+        payment_mode: "payment"
+        ), class:"btn btn-success" %>
+
+    <%= link_to "Subscribe for Morty™ avatar", checkout_path(
+        line_items: ["price_1O5QHLEQZj9AchNLjUsGDy5C"],
+        payment_mode: "subscription"
+        ), class:"btn btn-success" %>
+    
+    <%= link_to "Manage Billing", @portal_session.url, class:"btn btn-primary" unless @portal_session.nil? %>
 </div>
