@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Projects</h1>
+  <p>app\views\projects\index.html.erb</p>
+
+  <div id="projects">
+    <div class="card" style="width: 36rem;">
+      <% @projects.each do |project| %>
+        <%= render project %>  
+      <% end %>
+    </div>
+  </div>
+
+  <%= link_to "New project", new_project_path %>
+</div>

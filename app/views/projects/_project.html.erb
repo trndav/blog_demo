@@ -1,0 +1,14 @@
+<div class="container">
+  <div id="<%= dom_id project %>">
+    <div class="row">
+      <h1><%= project.title %></h1>  
+      <hr/>  
+      <p>        
+        <%= link_to project.link, project.link %>
+      </p>      
+      <%= project.body %>   
+      <%= link_to "Show this project", project %>
+      <hr/>    
+    </div>
+  </div>
+</div>

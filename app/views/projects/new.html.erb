@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>New project</h1>
+  <p>app\views\projects\new.html.erb</p>
+  <%# project: @project makes instance @project available in form %>
+  <%= render "form", project: @project %>
+
+  <br>
+
+  <div>
+    <%= link_to "Back to projects", projects_path %>
+  </div>
+</div>
