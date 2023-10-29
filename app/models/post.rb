@@ -31,12 +31,13 @@ class Post < ApplicationRecord
 
     def views_by_day
         daily_events = Ahoy::Event.where("cast(properties ->> 'post_id' as bigint) = ?", id)
-        daily_events.group_by_day(:time).count        
+        # daily_events.group_by_day(:time).count   
+        daily_events.group_by_day(:time, range: 1.month.ago..Time.now).count      
     end
 
     def self.total_views_by_day
         # Viewed Post event is in posts_controller
         daily_events = Ahoy::Event.where(name: "Viewed Post")
-        daily_events.group_by_day(:time).count
+        daily_events.group_by_day(:time, range: 1.month.ago..Time.now).count 
     end
 end

@@ -10,7 +10,7 @@ app\views\admin\show_post.html.erb
         </div>
     </div>
     <%# Part of chartkick gem?  %>
-    <%= line_chart @post.views_by_day %>
+    <%= area_chart Post.total_views_by_day, colors: ["#a00a"] %>
     <div class="row mt-1">
         <p>
             <strong>Title:</strong> <%= @post.title %>
