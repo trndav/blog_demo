@@ -1,4 +1,5 @@
 <div class="container text-center">
+app\views\admin\show_post.html.erb
     <h3>Administrator</h3>
     <%= render "admin/nav_links" %>
 
@@ -8,6 +9,8 @@
             <%= button_to "Delete", @post, method: :delete, data: {turbo_confirm: "Are you sure?" }, class:"btn btn-danger" %>
         </div>
     </div>
+    <%# Part of chartkick gem?  %>
+    <%= line_chart @post.views_by_day %>
     <div class="row mt-1">
         <p>
             <strong>Title:</strong> <%= @post.title %>
