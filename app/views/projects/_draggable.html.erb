@@ -1,0 +1,15 @@
+<% dragActions = "dragstart->drag#dragStart 
+                    dragover->drag#dragOver 
+                    dragenter->drag#dragEnter
+                    drop->drag#drop
+                    dragend->drag#dragEnd" %>
+<%# parent: "projects" Points to div id around projects in projects/index  %>
+<%= content_tag(:div, class: "bi bi-grip-vertical draggable", draggable: true, data: {
+    controller: "drag",
+    action: dragActions,
+    resource_id: project.id,
+    url: "drag/project",    
+    parent: "projects",
+}) do %>
+    <%= render project %> 
+<% end %>
