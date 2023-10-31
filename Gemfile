@@ -94,3 +94,6 @@ gem "chartkick", "~> 5.0"
 gem "acts_as_list", "~> 1.1"
 
 gem "whenever", "~> 1.0"
+
+gem "better_errors"
+gem "binding_of_caller"

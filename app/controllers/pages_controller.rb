@@ -1,5 +1,10 @@
 class PagesController < ApplicationController 
-  def home
+  console
+  Rails.logger.info("pages#home action") do 
+    "Rendered the homepage"
+  end
+
+  def home    
     #check if user is not logged, if not logged then return early
     return unless current_user
     # check if user has payment processor
