@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Use the Ruby interpreter in Cygwin's environment
+export PATH=/usr/bin:$PATH
+
+# Run the 'whenever' command
+whenever --update-crontab --set environment='development'
