@@ -1,6 +1,6 @@
 class PagesController < ApplicationController 
   console
-  Rails.logger.info("pages#home action") do 
+  Rails.logger.debug("pages#home action") do 
     "Rendered the homepage"
   end
 

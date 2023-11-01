@@ -13,6 +13,6 @@ Rails.logger.datetime_format = '%d-%m-%Y %H:%M:%S'
 Rails.logger.formatter = proc do |severity, datetime, progname, msg|
     "#{datetime}|#{severity}|#{progname}|#{msg}\n"
 end
-Rails.logger.info("Environment: #{Rails.env}") do 
+Rails.logger.debug("Environment: #{Rails.env}") do 
     "Started application"
 end
