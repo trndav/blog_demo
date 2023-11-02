@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @query = Post.ransack
-    @posts = @query.result(distinct: true).includes(:user, :rich_text_body).order(created_at: :desc)
+    @posts = @query.result(distinct: true).includes(:user, :rich_text_body, images_attachments: :blob).order(created_at: :desc)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -81,7 +81,8 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :user_id, :category_id)
+      # For multiple images code will be images: [] or :images
+      params.require(:post).permit(:title, :body, :user_id, :category_id, images: [])
     end
 
     def mark_notifications_as_read

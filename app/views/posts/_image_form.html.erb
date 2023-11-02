@@ -1,0 +1,8 @@
+<%# "dropzone dropzone-default dz-clickable" is CSS, data-controller is stimulus, %>
+<div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size="5" data-dropzone-accepted-files="image/*" data-dropzone-max-files="2" data-upload-multiple="true">
+    <%= form.file_field :images, multiple: true, direct_upload: true, data: { dropzone_target: 'input' } %>
+    <div class="dropzone-msg dz-message needsclick">
+        <h3 class="dropzone-msg-title">Title something</h3>
+        <span class="dropzone-msg-desc">Description up to 5 mgb</span>
+    </div>
+</div>

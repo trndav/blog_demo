@@ -9,6 +9,11 @@ class Post < ApplicationRecord
     # post have many notifications through :user model
     has_many :notifications, through: :user
 
+    #Single image upload
+    #has_one_attached :image
+    #Multiple images upload
+    has_many_attached :images
+
     has_rich_text :body
     # This is for ransack search (?)
     has_one :content, class_name: "ActionText::RichText", as: :record, dependent: :destroy
