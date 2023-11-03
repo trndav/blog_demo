@@ -10,6 +10,11 @@ Rails.application.configure do
     Bullet.add_footer    = true
   end
 
+# Install and create acc on ngrok. In development.rb add config.hosts << /[a-z0-9-]+\.ngrok\-free\.app/
+# Start rails: rails s -b 0.0.0.0 Start ngrok: ./ngrok.exe http 3000
+# Start localhost project - websites from link given in ngrok cli.
+  config.hosts << /[a-z0-9-]+\.ngrok\-free\.app/
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
